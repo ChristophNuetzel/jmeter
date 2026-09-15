@@ -1,0 +1,870 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apache JMeter – Erfahrungen und Workshop</title>
+
+    <style>
+        :root {
+            --dematic-blue: #004b87;
+            --dematic-dark-blue: #00345f;
+            --dematic-light-blue: #eaf4fb;
+            --dematic-yellow: #f5c400;
+            --text: #172b4d;
+            --muted: #62748a;
+            --background: #f4f7fa;
+            --white: #ffffff;
+            --border: #dbe4ec;
+            --success: #16794c;
+            --warning: #d97706;
+            --danger: #b42318;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        /* Kopfbereich */
+        .topbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .logo-bereich {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .logo-bereich img {
+            display: block;
+            object-fit: contain;
+        }
+
+        .dematic-logo {
+            width: 145px;
+            height: auto;
+        }
+
+        .jmeter-logo {
+            width: 130px;
+            height: auto;
+        }
+
+        .logo-trenner {
+            height: 38px;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .topbar-text {
+            color: var(--muted);
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .hero {
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(0, 52, 95, 0.97),
+                    rgba(0, 75, 135, 0.9)
+                );
+            color: var(--white);
+            padding: 70px 5% 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border: 70px solid rgba(245, 196, 0, 0.16);
+            border-radius: 50%;
+            right: -120px;
+            top: -180px;
+        }
+
+        .hero-inhalt {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .hero-kicker {
+            color: var(--dematic-yellow);
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 58px);
+            line-height: 1.08;
+            margin: 0 0 18px;
+            max-width: 850px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            font-size: 20px;
+            line-height: 1.55;
+            margin: 0;
+            color: #e6f1fa;
+        }
+
+        /* Tab-Navigation */
+        .navigation {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 3px 12px rgba(0, 40, 80, 0.08);
+        }
+
+        .tabs {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            padding: 19px 22px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 4px solid transparent;
+            transition: 0.2s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--dematic-blue);
+            background: var(--dematic-light-blue);
+        }
+
+        .tab-button.aktiv {
+            color: var(--dematic-blue);
+            border-bottom-color: var(--dematic-yellow);
+        }
+
+        /* Hauptinhalt */
+        main {
+            max-width: 1180px;
+            margin: 42px auto;
+            padding: 0 20px;
+        }
+
+        .tab-inhalt {
+            display: none;
+            animation: einblenden 0.25s ease-in-out;
+        }
+
+        .tab-inhalt.aktiv {
+            display: block;
+        }
+
+        @keyframes einblenden {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .seiten-titel {
+            margin-bottom: 28px;
+        }
+
+        .seiten-titel h2 {
+            font-size: 34px;
+            margin: 0 0 10px;
+            color: var(--dematic-dark-blue);
+        }
+
+        .seiten-titel p {
+            color: var(--muted);
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .karten-raster {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .karte {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(16, 45, 75, 0.07);
+        }
+
+        .karte.ganze-breite {
+            grid-column: 1 / -1;
+        }
+
+        .karte h3 {
+            color: var(--dematic-blue);
+            font-size: 21px;
+            margin: 0 0 16px;
+        }
+
+        .karte h4 {
+            color: var(--dematic-dark-blue);
+            font-size: 17px;
+            margin: 25px 0 10px;
+        }
+
+        .karte p,
+        .karte li {
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        .karte p {
+            margin: 0 0 15px;
+        }
+
+        .karte ul {
+            margin: 0 0 20px;
+            padding-left: 24px;
+        }
+
+        .karte li {
+            margin-bottom: 9px;
+        }
+
+        .karte li::marker {
+            color: var(--dematic-yellow);
+        }
+
+        .info-box {
+            border-left: 5px solid var(--dematic-blue);
+            background: var(--dematic-light-blue);
+            padding: 18px 20px;
+            margin: 18px 0;
+        }
+
+        .vorteile-box {
+            border-left: 5px solid var(--success);
+            background: #edf9f2;
+            padding: 18px 20px;
+            margin: 18px 0;
+        }
+
+        .nachteile-box {
+            border-left: 5px solid var(--warning);
+            background: #fff7e8;
+            padding: 18px 20px;
+            margin: 18px 0;
+        }
+
+        .projekt-box {
+            border-top: 4px solid var(--dematic-yellow);
+            background: #fbfdff;
+            border-radius: 3px;
+            padding: 22px;
+            margin-bottom: 24px;
+        }
+
+        .projekt-box h3 {
+            margin-top: 0;
+        }
+
+        .hinweis-box {
+            border-left: 5px solid #7c3aed;
+            background: #f5f1ff;
+            padding: 18px 20px;
+            margin: 18px 0;
+        }
+
+        .hinweis-box strong {
+            color: #5b21b6;
+        }
+
+        /* Bearbeitbare Bereiche */
+        [contenteditable="true"] {
+            outline: 2px dashed transparent;
+            border-radius: 3px;
+            transition: 0.2s ease;
+        }
+
+        [contenteditable="true"]:hover {
+            outline-color: #b9d8ee;
+        }
+
+        [contenteditable="true"]:focus {
+            outline-color: var(--dematic-yellow);
+            background: #fffdf0;
+        }
+
+        .platzhalter {
+            color: #7b8794;
+            font-style: italic;
+            border: 1px dashed #b7c4d0;
+            padding: 12px;
+            min-height: 42px;
+        }
+
+        .footer {
+            background: var(--dematic-dark-blue);
+            color: #dceaf5;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 850px) {
+            .karten-raster {
+                grid-template-columns: 1fr;
+            }
+
+            .karte.ganze-breite {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .topbar-text {
+                text-align: left;
+            }
+
+            .hero {
+                padding: 48px 20px 58px;
+            }
+
+            main {
+                margin-top: 30px;
+            }
+
+            .seiten-titel h2 {
+                font-size: 28px;
+            }
+
+            .karte {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Logos und Kopfzeile -->
+    <header class="topbar">
+        <div class="logo-bereich">
+
+            <!-- Lege die Logos im Ordner images ab -->
+            <img
+                class="dematic-logo"
+                src="images/dematic-logo.svg"
+                alt="Dematic Logo"
+            >
+
+            <div class="logo-trenner"></div>
+
+            <img
+                class="jmeter-logo"
+                src="images/jmeter-logo.svg"
+                alt="Apache JMeter Logo"
+            >
+
+        </div>
+
+        <div class="topbar-text" contenteditable="true">
+            Interne Präsentation<br>
+            Apache JMeter
+        </div>
+    </header>
+
+    <!-- Hero-Bereich -->
+    <section class="hero">
+        <div class="hero-inhalt">
+            <div class="hero-kicker" contenteditable="true">
+                Testautomatisierung und Performance
+            </div>
+
+            <h1 contenteditable="true">
+                Apache JMeter
+            </h1>
+
+            <p contenteditable="true">
+                Funktionen, Projekterfahrungen, Vor- und Nachteile sowie Workshop-Ergebnisse
+            </p>
+        </div>
+    </section>
+
+    <!-- Tab-Navigation -->
+    <nav class="navigation">
+        <div class="tabs">
+            <button class="tab-button aktiv" data-tab="funktionen">
+                1. Wichtigste Funktionen
+            </button>
+
+            <button class="tab-button" data-tab="projekte">
+                2. Projekterfahrung
+            </button>
+
+            <button class="tab-button" data-tab="vorteile">
+                3. Vor- und Nachteile
+            </button>
+
+            <button class="tab-button" data-tab="workshop">
+                4. Workshop
+            </button>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- TAB 1 -->
+        <section class="tab-inhalt aktiv" id="funktionen">
+
+            <div class="seiten-titel">
+                <h2 contenteditable="true">
+                    Wichtigste Funktionen von Apache JMeter
+                </h2>
+
+                <p contenteditable="true">
+                    Ein Überblick über die wichtigsten Einsatzmöglichkeiten und technischen Funktionen.
+                </p>
+            </div>
+
+            <div class="karten-raster">
+
+                <article class="karte">
+                    <h3 contenteditable="true">Allgemeine Funktion</h3>
+
+                    <p contenteditable="true">
+                        Apache JMeter gibt es seit 1998 und wird kontinuierlich weiterentwickelt und verbessert.
+                    </p>
+
+                    <p contenteditable="true">
+                        JMeter wurde ursprünglich für Last-, Performance- und Belastungstests entwickelt.
+                    </p>
+
+                    <h4 contenteditable="true">Erweitert und unterstützt heute</h4>
+
+                    <ul>
+                        <li contenteditable="true">HTTP- und REST-APIs</li>
+                        <li contenteditable="true">Webanwendungen</li>
+                        <li contenteditable="true">JDBC-Datenbanken</li>
+                        <li contenteditable="true">FTP, JMS und weitere Protokolle</li>
+                        <li contenteditable="true">Plugins und Skripte</li>
+                    </ul>
+
+                    <p contenteditable="true">
+                        Auswertung von Antwortzeiten, Durchsatz und Fehlerraten zur Laufzeit.
+                    </p>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Hier können weitere allgemeine Funktionen ergänzt werden.
+                    </div>
+                </article>
+
+                <article class="karte">
+                    <h3 contenteditable="true">Testerstellung und Testdaten</h3>
+
+                    <ul>
+                        <li contenteditable="true">
+                            Low-Code-Ansatz durch konfigurierbare Testelemente und Bausteine
+                        </li>
+                        <li contenteditable="true">
+                            Automatisierung vollständiger Testabläufe, einschließlich End-to-End-Abläufen
+                        </li>
+                        <li contenteditable="true">
+                            Verwendung von Variablen, Zufallswerten und Wartezeiten
+                        </li>
+                        <li contenteditable="true">
+                            Einlesen und Nutzen von Testdaten aus externen Quellen
+                        </li>
+                        <li contenteditable="true">
+                            Eigene Fehlerausgaben und Abbruchbedingungen pro Schritt definierbar
+                        </li>
+                        <li contenteditable="true">
+                            Für komplexere Testlogik durch Java beziehungsweise Groovy erweiterbar
+                        </li>
+                    </ul>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Hier können weitere Funktionen zur Testerstellung ergänzt werden.
+                    </div>
+                </article>
+
+                <article class="karte ganze-breite">
+                    <h3 contenteditable="true">Datenbank und Testausführung</h3>
+
+                    <ul>
+                        <li contenteditable="true">
+                            Datenbankanbindung über JDBC: SQL-Abfragen ausführen und Ergebnisse im Testablauf weiterverwenden
+                        </li>
+                        <li contenteditable="true">
+                            Automatisierte Ausführung über Jenkins beziehungsweise CI/CD-Pipelines
+                        </li>
+                        <li contenteditable="true">
+                            Übermittlung beziehungsweise Rückmeldung von Testergebnissen an TestRail über eine Integration oder API
+                        </li>
+                        <li contenteditable="true">
+                            Erweiterbar durch einen Open-Source-Plugin-Manager und eine große, aktive Community
+                        </li>
+                        <li contenteditable="true">
+                            Bei Bedarf mit Selenium für Browser-Automatisierung kombinierbar
+                        </li>
+                    </ul>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Hier können weitere Integrationen oder Tools ergänzt werden.
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- TAB 2 -->
+        <section class="tab-inhalt" id="projekte">
+
+            <div class="seiten-titel">
+                <h2 contenteditable="true">Bisherige Projekterfahrung</h2>
+
+                <p contenteditable="true">
+                    Praktische Erfahrungen mit JMeter in den Projekten HelloFresh und Sano.
+                </p>
+            </div>
+
+            <div class="karten-raster">
+
+                <article class="karte ganze-breite">
+                    <div class="projekt-box">
+
+                        <h3 contenteditable="true">Projekt HelloFresh</h3>
+
+                        <ul>
+                            <li contenteditable="true">
+                                Zwei vollständige End-to-End-Regressionstests automatisiert: Sunny Case und Fehlerfall
+                            </li>
+                            <li contenteditable="true">
+                                SHORT- und FULL-Pick sowie NR- und OOS-Buffer-Tests abgebildet
+                            </li>
+                            <li contenteditable="true">
+                                Testdaten- und Bestandsverwaltung über CSV-Dateien von der Ausführungslogik in JMeter getrennt
+                            </li>
+                            <li contenteditable="true">
+                                Während der Ausführung wurden alle Host-Telegramme validiert
+                            </li>
+                            <li contenteditable="true">
+                                Validierungen über SQL-Abfragen durchgeführt
+                            </li>
+                            <li contenteditable="true">
+                                DVF über REST angesprochen
+                            </li>
+                            <li contenteditable="true">
+                                LightSim umgangen und das Picking über REST-Aufrufe durchgeführt
+                            </li>
+                            <li contenteditable="true">
+                                Tests über Jenkins im Non-GUI-Modus verwaltet
+                            </li>
+                            <li contenteditable="true">
+                                Jenkins-Reporting konfiguriert
+                            </li>
+                            <li contenteditable="true">
+                                Erweitertes Logging pro Schritt erstellt und in Jenkins integriert
+                            </li>
+                        </ul>
+
+                        <h4 contenteditable="true">Herausforderungen</h4>
+
+                        <ul>
+                            <li contenteditable="true">
+                                REST-Aufrufe für LightSim mussten ermittelt, automatisiert und parametrisiert werden
+                            </li>
+                            <li contenteditable="true">
+                                Polling: Es wird eine definierte Zeit auf einen Karton gewartet. Wenn dieser nicht angekommen ist, wird erneut geprüft. Dadurch werden feste Wartezeiten vermieden
+                            </li>
+                            <li contenteditable="true">
+                                Die Klärung der Ladeeinheit war notwendig und nur über einen Dialog möglich. Daher wurde Selenium in JMeter eingesetzt
+                            </li>
+                        </ul>
+
+                        <div class="platzhalter" contenteditable="true">
+                            Hier können weitere Erfahrungen oder Herausforderungen ergänzt werden.
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="karte">
+                    <div class="projekt-box">
+
+                        <h3 contenteditable="true">Projekt Sano</h3>
+
+                        <ul>
+                            <li contenteditable="true">
+                                90 % der FAT-Testfälle wurden vor dem FAT-Termin automatisiert
+                            </li>
+                        </ul>
+
+                        <div class="platzhalter" contenteditable="true">
+                            Hier können weitere Tätigkeiten und Ergebnisse ergänzt werden.
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="karte">
+                    <h3 contenteditable="true">Zusammenfassung</h3>
+
+                    <p contenteditable="true">
+                        Durch die Projekte HelloFresh und Sano konnte ich praktische Erfahrungen mit Apache JMeter sammeln. Dabei habe ich gelernt, Testabläufe zu erstellen, Schnittstellen zu testen und Testergebnisse auszuwerten.
+                    </p>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Hier kann eine persönliche Zusammenfassung ergänzt werden.
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- TAB 3 -->
+        <section class="tab-inhalt" id="vorteile">
+
+            <div class="seiten-titel">
+                <h2 contenteditable="true">Vorteile und Nachteile</h2>
+
+                <p contenteditable="true">
+                    Einordnung von JMeter aus praktischer Sicht.
+                </p>
+            </div>
+
+            <div class="karten-raster">
+
+                <article class="karte">
+                    <div class="vorteile-box">
+
+                        <h3 contenteditable="true">Vorteile</h3>
+
+                        <ul>
+                            <li contenteditable="true">Kostenloses Open-Source-Tool</li>
+                            <li contenteditable="true">Grafische Erstellung von Testabläufen mit Low-Code-Ansatz</li>
+                            <li contenteditable="true">Unterstützt CSV-Testdaten, Variablen, JDBC und Groovy</li>
+                            <li contenteditable="true">Einfache Integration in Jenkins und CI/CD-Pipelines</li>
+                            <li contenteditable="true">Viele Erweiterungen durch Plugins sowie eine große Community</li>
+                        </ul>
+
+                        <div class="platzhalter" contenteditable="true">
+                            Hier können weitere Vorteile ergänzt werden.
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="karte">
+                    <div class="nachteile-box">
+
+                        <h3 contenteditable="true">Nachteile</h3>
+
+                        <ul>
+                            <li contenteditable="true">
+                                Komplexe Testabläufe benötigen Einarbeitung und teilweise Groovy-Skripte
+                            </li>
+                            <li contenteditable="true">
+                                Die Ausführung über Jenkins kann bei begrenzten Ressourcen einen Engpass verursachen
+                            </li>
+                            <li contenteditable="true">
+                                Die Stabilität im Dauerbetrieb muss projektspezifisch nachgewiesen werden
+                            </li>
+                            <li contenteditable="true">
+                                Jeder Fehlschlag muss einzeln analysiert werden
+                            </li>
+                            <li contenteditable="true">
+                                Testpläne müssen bei Änderungen an Schnittstellen gepflegt werden
+                            </li>
+                        </ul>
+
+                        <div class="platzhalter" contenteditable="true">
+                            Hier können weitere Nachteile ergänzt werden.
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="karte ganze-breite">
+                    <h3 contenteditable="true">Fazit</h3>
+
+                    <p contenteditable="true">
+                        JMeter eignet sich besonders für automatisierte Schnittstellen-, Last- und Performancetests. Der Low-Code-Ansatz ermöglicht einen schnellen Einstieg. Für komplexere Testlogik sind jedoch zusätzliche Programmierkenntnisse, beispielsweise in Groovy, erforderlich.
+                    </p>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Hier kann ein persönliches Fazit ergänzt werden.
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- TAB 4 -->
+        <section class="tab-inhalt" id="workshop">
+
+            <div class="seiten-titel">
+                <h2 contenteditable="true">Workshop</h2>
+
+                <p contenteditable="true">
+                    Offene Gedanken, Diskussionspunkte und Ergebnisse.
+                </p>
+            </div>
+
+            <div class="karten-raster">
+
+                <article class="karte">
+                    <h3 contenteditable="true">Gedanken</h3>
+
+                    <div class="info-box">
+                        <p class="platzhalter" contenteditable="true">
+                            Hier können Gedanken, Fragen und Diskussionspunkte ergänzt werden.
+                        </p>
+                    </div>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Weiterer Workshop-Punkt hinzufügen ...
+                    </div>
+                </article>
+
+                <article class="karte">
+                    <h3 contenteditable="true">Ergebnisse</h3>
+
+                    <div class="info-box">
+                        <p class="platzhalter" contenteditable="true">
+                            Hier können die Ergebnisse des Workshops eingetragen werden.
+                        </p>
+                    </div>
+
+                    <div class="platzhalter" contenteditable="true">
+                        Weiteres Ergebnis hinzufügen ...
+                    </div>
+                </article>
+
+                <article class="karte ganze-breite">
+                    <h3 contenteditable="true">Offene Punkte</h3>
+
+                    <ul>
+                        <li contenteditable="true">
+                            <span class="platzhalter">
+                                Offenen Punkt ergänzen ...
+                            </span>
+                        </li>
+                        <li contenteditable="true">
+                            <span class="platzhalter">
+                                Offenen Punkt ergänzen ...
+                            </span>
+                        </li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p contenteditable="true">
+            Apache JMeter – interne Präsentation
+        </p>
+
+        <p contenteditable="true">
+            Dematic
+        </p>
+    </footer>
+
+    <script>
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabInhalte = document.querySelectorAll(".tab-inhalt");
+
+        tabButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const zielTab = button.dataset.tab;
+
+                tabButtons.forEach(tab => {
+                    tab.classList.remove("aktiv");
+                });
+
+                tabInhalte.forEach(inhalt => {
+                    inhalt.classList.remove("aktiv");
+                });
+
+                button.classList.add("aktiv");
+                document.getElementById(zielTab).classList.add("aktiv");
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
