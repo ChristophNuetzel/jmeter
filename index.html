@@ -1,42 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apache JMeter</title>
-<style>
-:root{--blue:#004b87;--dark:#00345f;--light:#eaf4fb;--yellow:#FFC72C;--text:#172b4d;--muted:#62748a;--bg:#f4f7fa;--white:#fff;--border:#dbe4ec;--success:#16794c;--warning:#d97706}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:13px 5%;display:flex;justify-content:space-between;align-items:center;gap:24px}.logos{display:flex;align-items:center;gap:22px}.logos img{display:block;object-fit:contain}.dematic-logo{width:145px}.jmeter-logo{width:155px}.separator{height:38px;width:1px;background:var(--border)}.topbar-text{color:var(--muted);font-size:14px;text-align:right}
-.hero{background:#fff;border-bottom:1px solid var(--border);padding:28px 5%}.hero-inner{max-width:1180px;margin:auto;border-left:7px solid var(--yellow);padding:16px 22px;box-shadow:0 8px 24px rgba(16,45,75,.07)}.hero h1{font-size:35px;color:var(--dark);margin:0 0 7px}.hero p{font-size:17px;color:var(--muted);margin:0}
-.navigation{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;box-shadow:0 3px 12px rgba(0,40,80,.08)}.tabs{max-width:1180px;margin:auto;padding:0 20px;display:flex;gap:4px;overflow-x:auto}.tab-button{border:0;background:transparent;color:var(--muted);padding:19px 22px;font-size:15px;font-weight:bold;cursor:pointer;white-space:nowrap;border-bottom:4px solid transparent}.tab-button:hover{color:var(--blue);background:var(--light)}.tab-button.active{color:var(--blue);border-bottom-color:var(--yellow)}
-main{max-width:1180px;margin:38px auto;padding:0 20px}.tab-content{display:none}.tab-content.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.page-title{margin-bottom:26px}.page-title h2{font-size:34px;margin:0 0 10px;color:var(--dark)}.page-title p{font-size:17px;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.card{background:#fff;border:1px solid var(--border);border-radius:4px;padding:30px;box-shadow:0 8px 24px rgba(16,45,75,.07)}.card.full{grid-column:1/-1}.card h3{color:var(--blue);font-size:21px;margin:0 0 16px}.card h4{color:var(--dark);font-size:17px;margin:25px 0 10px}.card p,.card li{font-size:16px;line-height:1.65}.card ul{margin:0 0 20px;padding-left:24px}.card li{margin-bottom:9px}.card li::marker{color:var(--yellow)}.placeholder{color:#7b8794;font-style:italic;border:1px dashed #b7c4d0;padding:12px;min-height:42px}.project{border-top:4px solid var(--yellow);background:#fbfdff;border-radius:3px;margin-bottom:18px;overflow:hidden}.project-button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:20px 22px;border:0;background:transparent;color:var(--blue);font-size:21px;font-weight:bold;text-align:left;cursor:pointer}.project-button:hover{background:#fff9df}.tag{font-size:12px;background:var(--yellow);color:#222;padding:5px 9px;border-radius:999px;margin-left:8px}.arrow{transition:.2s}.project-button[aria-expanded="true"] .arrow{transform:rotate(180deg)}.project-body{display:none;padding:0 22px 22px}.project-body.open{display:block}.project-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.pros{border-left:5px solid var(--success);background:#edf9f2}.cons{border-left:5px solid var(--warning);background:#fff7e8}.summary{border-left:5px solid var(--blue);background:var(--light);padding:18px 20px;margin-top:24px}.editor{min-height:220px;border:1px dashed #b7c4d0;padding:16px;background:#fff}.footer{background:var(--dark);color:#dceaf5;text-align:center;padding:30px 20px;margin-top:60px}.error{max-width:850px;margin:50px auto;padding:24px;background:#fff3f3;border-left:6px solid #b42318}
-@media(max-width:850px){.grid,.project-columns{grid-template-columns:1fr}.card.full{grid-column:auto}}@media(max-width:600px){.topbar{align-items:flex-start;flex-direction:column}.topbar-text{text-align:left}.hero{padding:18px 16px}.hero h1{font-size:28px}.card{padding:22px}.jmeter-logo{width:125px}}
-</style>
-<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interne Präsentation zu Apache JMeter, Funktionen und Projekterfahrungen.">
+  <title>Apache JMeter – Erfahrungen und Workshop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
 </head>
 <body>
-<header class="topbar"><div class="logos"><img class="dematic-logo" src="dematic.png" alt="Dematic Logo"><div class="separator"></div><img class="jmeter-logo" src="jmeter.png" alt="Apache JMeter Logo"></div><div class="topbar-text">Interne Präsentation<br>Apache JMeter</div></header>
-<section class="hero"><div class="hero-inner"><h1 id="site-title">Apache JMeter</h1><p id="site-subtitle"></p></div></section>
-<nav class="navigation"><div class="tabs" id="tabs"></div></nav>
-<main id="content"><div class="card">Inhalte werden aus content.yaml geladen …</div></main>
-<footer class="footer" id="footer"></footer>
-<script>
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const list=items=>`<ul>${(items||[]).map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`;
-const pageTitle=(title,intro)=>`<div class="page-title"><h2>${esc(title)}</h2><p>${esc(intro)}</p></div>`;
-function renderFunctions(d){return pageTitle(d.title,d.intro)+`<div class="grid">${(d.sections||[]).map((s,i)=>`<article class="card ${i===2?'full':''}"><h3>${esc(s.title)}</h3>${list(s.items)}${s.placeholder?`<div class="placeholder">${esc(s.placeholder)}</div>`:''}</article>`).join('')}</div>`}
-function project(p,i){const body=p.sections?`<div class="project-columns">${p.sections.map(s=>`<div><h4>${esc(s.title)}</h4>${list(s.items)}</div>`).join('')}</div>`:list(p.items);return `<article class="project"><button class="project-button" aria-expanded="${i===0}"><span>${esc(p.name)} <span class="tag">${esc(p.tag)}</span></span><span class="arrow">⌄</span></button><div class="project-body ${i===0?'open':''}">${body}</div></article>`}
-function renderProjects(d){return pageTitle(d.title,d.intro)+(d.projects||[]).map(project).join('')+`<div class="summary"><h3>${esc(d.summaryTitle)}</h3><p>${esc(d.summary)}</p></div>`}
-function renderProsCons(d){return pageTitle(d.title,d.intro)+`<div class="grid"><article class="card pros"><h3>${esc(d.advantagesTitle)}</h3>${list(d.advantages)}</article><article class="card cons"><h3>${esc(d.disadvantagesTitle)}</h3>${list(d.disadvantages)}${d.disadvantagePlaceholder?`<div class="placeholder">${esc(d.disadvantagePlaceholder)}</div>`:''}</article><article class="card full"><h3>${esc(d.fazitTitle)}</h3>${list(d.fazit)}${d.fazitPlaceholder?`<div class="placeholder">${esc(d.fazitPlaceholder)}</div>`:''}</article></div>`}
-function renderWorkshop(d){return pageTitle(d.title,d.intro)+`<div class="grid"><article class="card"><h3>${esc(d.gedankenTitle)}</h3><div class="editor" contenteditable="true">${esc(d.gedanken)}</div></article><article class="card"><h3>${esc(d.ergebnisseTitle)}</h3><div class="editor" contenteditable="true">${esc(d.ergebnisse)}</div></article></div>`}
-function activate(id){document.querySelectorAll('.tab-button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.tab-content').forEach(s=>s.classList.toggle('active',s.id===id))}
-async function init(){try{const r=await fetch(`content.yaml?ts=${Date.now()}`);if(!r.ok)throw new Error(`HTTP ${r.status}`);const data=jsyaml.load(await r.text());document.title=data.site?.title||'Apache JMeter';document.getElementById('site-title').textContent=data.site?.title||'';document.getElementById('site-subtitle').textContent=data.site?.subtitle||'';document.getElementById('footer').textContent=data.site?.footer||'';
-const defs=[['funktionen',data.navigation?.[0]||'Funktionen',renderFunctions(data.funktionen)],['erfahrung',data.navigation?.[1]||'Erfahrung',renderProjects(data.projekterfahrung)],['proscons',data.navigation?.[2]||'Pros und Cons',renderProsCons(data.prosCons)],['workshop',data.navigation?.[3]||'Workshop',renderWorkshop(data.workshop)]];
-document.getElementById('tabs').innerHTML=defs.map((x,i)=>`<button class="tab-button ${i===0?'active':''}" data-tab="${x[0]}">${i+1}. ${esc(x[1])}</button>`).join('');document.getElementById('content').innerHTML=defs.map((x,i)=>`<section class="tab-content ${i===0?'active':''}" id="${x[0]}">${x[2]}</section>`).join('');
-document.querySelectorAll('.tab-button').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.tab)));document.querySelectorAll('.project-button').forEach(b=>b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));b.nextElementSibling.classList.toggle('open',!open)}));
-}catch(e){document.getElementById('content').innerHTML=`<div class="error"><h2>content.yaml konnte nicht geladen werden</h2><p>Starte die Webseite über einen Webserver und lege content.yaml neben index.html. Beim direkten Öffnen per file:// blockieren Browser den Dateizugriff häufig.</p><code>${esc(e.message)}</code></div>`}}
-init();
-</script>
+  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+  <header class="topbar">
+    <div class="brand-area" aria-label="Dematic und Apache JMeter">
+      <div class="brand brand-primary">DEMATIC</div><span class="brand-divider" aria-hidden="true"></span><div class="brand brand-secondary">Apache JMeter</div>
+    </div>
+    <div id="topbar-text" class="topbar-text"></div>
+  </header>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <p id="hero-kicker" class="hero-kicker"></p>
+      <h1 id="hero-title"></h1>
+      <p id="hero-subtitle" class="hero-subtitle"></p>
+    </div>
+  </section>
+  <nav class="navigation" aria-label="Inhaltsbereiche"><div id="tabs" class="tabs" role="tablist"></div></nav>
+  <main id="main-content" tabindex="-1"><div id="content" aria-live="polite"></div></main>
+  <footer id="footer" class="footer"></footer>
+  <noscript><p class="noscript">Diese Website benötigt JavaScript, um die Inhalte aus der JSON-Datei anzuzeigen.</p></noscript>
 </body>
 </html>

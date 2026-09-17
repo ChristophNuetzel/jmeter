@@ -1,0 +1,195 @@
+{
+  "site": {
+    "language": "de",
+    "title": "Apache JMeter",
+    "kicker": "Testautomatisierung und Performance",
+    "subtitle": "Funktionen, Projekterfahrungen, Vor- und Nachteile sowie Workshop-Ergebnisse",
+    "topbar": [
+      "Interne Präsentation",
+      "Apache JMeter"
+    ],
+    "footer": [
+      "Apache JMeter – interne Präsentation",
+      "Dematic"
+    ]
+  },
+  "tabs": [
+    {
+      "id": "funktionen",
+      "label": "1. Wichtigste Funktionen",
+      "title": "Wichtigste Funktionen von Apache JMeter",
+      "intro": "Ein Überblick über die wichtigsten Einsatzmöglichkeiten und technischen Funktionen.",
+      "sections": [
+        {
+          "title": "Allgemeine Funktion",
+          "paragraphs": [
+            "Apache JMeter gibt es seit 1998 und wird kontinuierlich weiterentwickelt und verbessert.",
+            "JMeter wurde ursprünglich für Last-, Performance- und Belastungstests entwickelt."
+          ],
+          "subheading": "Erweitert und unterstützt heute",
+          "items": [
+            "HTTP- und REST-APIs",
+            "Webanwendungen",
+            "JDBC-Datenbanken",
+            "FTP, JMS und weitere Protokolle",
+            "Plugins und Skripte"
+          ],
+          "after": "Auswertung von Antwortzeiten, Durchsatz und Fehlerraten zur Laufzeit."
+        },
+        {
+          "title": "Testerstellung und Testdaten",
+          "items": [
+            "Low-Code-Ansatz durch konfigurierbare Testelemente und Bausteine",
+            "Automatisierung vollständiger Testabläufe, einschließlich End-to-End-Abläufen",
+            "Verwendung von Variablen, Zufallswerten und Wartezeiten",
+            "Einlesen und Nutzen von Testdaten aus externen Quellen",
+            "Eigene Fehlerausgaben und Abbruchbedingungen pro Schritt definierbar",
+            "Für komplexere Testlogik durch Java beziehungsweise Groovy erweiterbar"
+          ]
+        },
+        {
+          "title": "Datenbank und Testausführung",
+          "wide": true,
+          "items": [
+            "Datenbankanbindung über JDBC: SQL-Abfragen ausführen und Ergebnisse im Testablauf weiterverwenden",
+            "Automatisierte Ausführung über Jenkins beziehungsweise CI/CD-Pipelines",
+            "Übermittlung beziehungsweise Rückmeldung von Testergebnissen an TestRail über eine Integration oder API",
+            "Erweiterbar durch einen Open-Source-Plugin-Manager und eine große, aktive Community",
+            "Bei Bedarf mit Selenium für Browser-Automatisierung kombinierbar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projekte",
+      "label": "2. Projekterfahrung",
+      "title": "Bisherige Projekterfahrung",
+      "intro": "Praktische Erfahrungen mit JMeter in den Projekten HelloFresh, Sano und Eurofit.",
+      "sections": [
+        {
+          "title": "Projekt HelloFresh",
+          "wide": true,
+          "variant": "project",
+          "items": [
+            "Zwei vollständige End-to-End-Regressionstests automatisiert: Sunny Case und Fehlerfall",
+            "SHORT- und FULL-Pick sowie NR- und OOS-Buffer-Tests abgebildet",
+            "Testdaten- und Bestandsverwaltung über CSV-Dateien von der Ausführungslogik in JMeter getrennt",
+            "Während der Ausführung alle HOST-Telegramme validiert",
+            "Validierungen über SQL-Abfragen durchgeführt",
+            "DVF über REST angesprochen",
+            "LightSim umgangen und das Picking über REST-Aufrufe durchgeführt",
+            "Tests über Jenkins im Non-GUI-Modus verwaltet",
+            "Jenkins-Reporting konfiguriert",
+            "Erweitertes Logging pro Schritt erstellt und in Jenkins integriert",
+            "Jobs in Jenkins angelegt und darüber ausgeführt, einschließlich Logging und Reporting"
+          ],
+          "subheading": "Herausforderungen",
+          "secondaryItems": [
+            "REST-Aufrufe für LightSim mussten ermittelt, automatisiert und parametrisiert werden",
+            "Polling: Es wird eine definierte Zeit auf einen Karton gewartet. Wenn dieser nicht angekommen ist, wird erneut geprüft. Dadurch werden feste Wartezeiten vermieden",
+            "Die Klärung der Ladeeinheit war notwendig und nur über einen Dialog möglich. Daher wurde Selenium in JMeter eingesetzt"
+          ]
+        },
+        {
+          "title": "Projekt Sano",
+          "variant": "project",
+          "items": [
+            "JMeter für alle End-to-End-Tests verwendet",
+            "Support im FAT-Meeting geleistet",
+            "90 % der FAT-Testfälle bereits vor dem FAT-Termin automatisiert",
+            "Testdaten mit JMeter zur Vorbereitung des FAT-Meetings angelegt",
+            "Clean-up-Jobs für saubere Testergebnisse erstellt, darunter deleteLoadUnit und loadUnitLeft",
+            "Jobs in Jenkins angelegt und darüber ausgeführt, einschließlich Logging und Reporting"
+          ]
+        },
+        {
+          "title": "Projekt Eurofit",
+          "variant": "project",
+          "items": [
+            "JMeter zur Testdatenanlage verwendet, einschließlich SQL-Abfragen für Avisen und Orders",
+            "Einsatz zur Testdatenanlage, da eine End-to-End-Automatisierung mit AutoMod und Classic nicht möglich war"
+          ]
+        },
+        {
+          "title": "Zusammenfassung",
+          "wide": true,
+          "paragraphs": [
+            "Durch die Projekte HelloFresh und Sano konnte ich praktische Erfahrungen mit Apache JMeter sammeln.",
+            "Dabei habe ich gelernt, Testabläufe zu erstellen, Schnittstellen zu testen und Testergebnisse auszuwerten."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vorteile",
+      "label": "3. Vor- und Nachteile",
+      "title": "Vorteile und Nachteile",
+      "intro": "Einordnung von JMeter aus praktischer Sicht.",
+      "sections": [
+        {
+          "title": "Vorteile",
+          "variant": "positive",
+          "items": [
+            "Kostenloses Open-Source-Tool unter der Apache-Lizenz",
+            "Erstellung von End-to-End-Tests mit einem Low-Code-Ansatz",
+            "Einfache Integration in Jenkins und CI/CD-Pipelines",
+            "Viele Erweiterungen durch Plugins sowie eine große Community",
+            "Zahlreiche Hilfssampler für Testdatenmanagement, Variablen, Zufallswerte, JDBC, Groovy, TestRail, Counter und Logging",
+            "Deutlich breiterer Funktionsumfang für komplexe Testabläufe als reine API-Clients wie Postman oder Bruno"
+          ]
+        },
+        {
+          "title": "Nachteile",
+          "variant": "negative",
+          "items": [
+            "Weniger geeignet für Projekte mit vielen UI-Dialoginteraktionen und kundenspezifischen Dialogen",
+            "Mögliche Lösung für UI-lastige Abläufe: nachträgliche Implementierung beziehungsweise Erweiterung der DiQ API",
+            "Komplexe Testabläufe benötigen Einarbeitung und teilweise Groovy-Skripte",
+            "Analyseaufwand bei Fehlschlägen sowie projektspezifische Prüfung von Stabilität und Robustheit"
+          ]
+        },
+        {
+          "title": "Fazit",
+          "wide": true,
+          "paragraphs": [
+            "Testpläne müssen bei Änderungen an Schnittstellen gepflegt werden.",
+            "JMeter eignet sich besonders für automatisierte Schnittstellen-, Last- und Performancetests. Der Low-Code-Ansatz ermöglicht einen schnellen Einstieg. Für komplexere Testlogik sind jedoch zusätzliche Programmierkenntnisse, beispielsweise in Groovy, erforderlich."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "workshop",
+      "label": "4. Workshop",
+      "title": "Workshop",
+      "intro": "Offene Gedanken, Diskussionspunkte und Ergebnisse.",
+      "sections": [
+        {
+          "title": "Gedanken",
+          "variant": "info",
+          "editable": true,
+          "paragraphs": [
+            "Hier können Gedanken, Fragen und Diskussionspunkte ergänzt werden."
+          ]
+        },
+        {
+          "title": "Ergebnisse",
+          "variant": "info",
+          "editable": true,
+          "paragraphs": [
+            "Hier können die Ergebnisse des Workshops eingetragen werden."
+          ]
+        },
+        {
+          "title": "Offene Punkte",
+          "wide": true,
+          "editable": true,
+          "items": [
+            "Offenen Punkt ergänzen …",
+            "Weiteren offenen Punkt ergänzen …"
+          ]
+        }
+      ]
+    }
+  ]
+}
